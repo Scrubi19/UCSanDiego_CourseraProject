@@ -1,6 +1,5 @@
 package parsing;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,7 +12,6 @@ import processing.core.PApplet;
 import processing.data.XML;
 
 public class ParseFeed {
-
 
 	/*
 	 * This method is to parse a GeoRSS feed corresponding to earthquakes around
@@ -126,8 +124,6 @@ public class ParseFeed {
 	private static float getFloatVal(XML itemXML, String tagName) {
 		return Float.parseFloat(getStringVal(itemXML, tagName));
 	}
-	
-
 	/*
 	 * This method is to parse a file containing airport information.  
 	 * The file and its format can be found: 

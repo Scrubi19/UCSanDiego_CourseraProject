@@ -9,10 +9,8 @@ import processing.core.PGraphics;
  * @author UC San Diego Intermediate Software Development MOOC team
  *
  */
-// TODO: Implement the comparable interface
-public abstract class EarthquakeMarker extends CommonMarker
-{
-	
+
+public abstract class EarthquakeMarker extends CommonMarker implements Comparable <EarthquakeMarker>  {
 	// Did the earthquake occur on land?  This will be set by the subclasses.
 	protected boolean isOnLand;
 
@@ -21,7 +19,6 @@ public abstract class EarthquakeMarker extends CommonMarker
 	// using the thresholds below, or a continuous function
 	// based on magnitude. 
 	protected float radius;
-	
 	
 	// constants for distance
 	protected static final float kmPerMile = 1.6f;
@@ -36,16 +33,11 @@ public abstract class EarthquakeMarker extends CommonMarker
 	/** Greater than or equal to this threshold is a deep depth */
 	public static final float THRESHOLD_DEEP = 300;
 
-	// ADD constants for colors
-
-	
 	// abstract method implemented in derived classes
 	public abstract void drawEarthquake(PGraphics pg, float x, float y);
-		
-	
+
 	// constructor
-	public EarthquakeMarker (PointFeature feature) 
-	{
+	public EarthquakeMarker (PointFeature feature) {
 		super(feature.getLocation());
 		// Add a radius property and then set the properties
 		java.util.HashMap<String, Object> properties = feature.getProperties();
@@ -54,10 +46,11 @@ public abstract class EarthquakeMarker extends CommonMarker
 		setProperties(properties);
 		this.radius = 1.75f*getMagnitude();
 	}
-	
-	// TODO: Add the method:
-	// public int compareTo(EarthquakeMarker marker)
-	
+
+	@Override
+	public int compareTo(EarthquakeMarker marker) {
+		 return Float.compare(this.getMagnitude(), marker.getMagnitude());
+	 }
 	
 	// calls abstract method drawEarthquake and then checks age and draws X if needed
 	@Override
@@ -94,8 +87,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 	}
 
 	/** Show the title of the earthquake if this marker is selected */
-	public void showTitle(PGraphics pg, float x, float y)
-	{
+	public void showTitle(PGraphics pg, float x, float y) {
 		String title = getTitle();
 		pg.pushStyle();
 		
@@ -109,9 +101,7 @@ public abstract class EarthquakeMarker extends CommonMarker
 		pg.fill(0);
 		pg.text(title, x + 3 , y +18);
 		
-		
 		pg.popStyle();
-		
 	}
 
 	
