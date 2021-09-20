@@ -1,4 +1,4 @@
-package module6;
+package project;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import de.fhpotsdam.unfolding.data.Feature;
 import de.fhpotsdam.unfolding.data.PointFeature;
 import de.fhpotsdam.unfolding.geo.Location;
 import de.fhpotsdam.unfolding.marker.SimpleLinesMarker;
+import module6.CommonMarker;
 import processing.core.PGraphics;
 import processing.core.PShape;
 
